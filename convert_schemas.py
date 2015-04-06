@@ -163,7 +163,10 @@ def format_type(schema, root):
             return ':ref:`{0} <{1}/{2}>`'.format(ref[2:], root, ref[2:])
         else:
             basename = os.path.basename(schema['$ref'])
-            return ':doc:`{0} <{1}>`'.format(basename, schema['$ref'])
+            if schema['$ref'].startswith('http:'):
+                return '`{0} <{1}>`__'.format(basename, schema['$ref'])
+            else:
+                return ':doc:`{0} <{1}>`'.format(basename, schema['$ref'])
 
     else:
         type = schema.get('type')

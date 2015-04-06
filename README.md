@@ -1,8 +1,9 @@
-ASDF standard
-=============
+YAML Schema Standard
+====================
 
-This document describes the Advanced Scientific Data Format (ASDF),
-pronounced *AZ*-diff.
+This document describes the YAML Schema format, an extension to JSON Schema
+designed specifically for validating and documenting data products serialized
+as YAML.
 
 Build requirements
 ==================
