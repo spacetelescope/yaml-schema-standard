@@ -111,9 +111,43 @@ YAML Schema adds five new keywords to JSON Schema:
 ``tag``, which may be attached to any data type, declares that the
 element must have the given YAML tag.
 
-TODO: Write new documentation for this keyword with references/examples
-from an example schema that would be included with this documentation, as
-opposed to using ASDF as an example.
+For example, the `invoice <schemas/stsci.edu/yaml-schema/examples/invoice>`_
+schema declares its tag to be::
+
+    tag: "tag:stsci.edu:yaml-schema/examples/invoice"
+
+This implies that an object in a YAML document is only matched to this schema
+if it explicitly marked with the ``!invoice`` tag.  Conversely, if a YAML
+document references this schema, and objects that have the ``!invoice`` tag
+must satisify the schema associated with it.  Therefore, there is a one-to-one
+mapping between YAML tags and schemas which specify that tag in the ``tag``
+keyword.
+
+A schema may require an individual object property or array item to have a
+specific tag by referencing the *schema* associated with that tag, rather than
+the tag directly.  For example a schema that includes an invoice might look
+like:
+
+.. code-block:: yaml
+
+    %YAML 1.1
+    ---
+    $schema: "http://stsci.edu/schemas/yaml-schema/draft-01" 
+    id: "http://stsci.edu/schemas/yaml-schema/examples/customer"
+    tag: "tag:stsci.edu:yaml-schema/examples/customer"
+    title: Customer
+    properties:
+        order-history:
+            type: array
+            items:
+                $ref: "invoice"
+
+In this example the reference to ``"invoice"`` as the ``order-history`` item
+type does not directly refer to the ``invoice`` *tag*, but to the invoice
+*schema*.  There is no requirement for a schema referenced in this way to have
+an associated tag.  But because the ``"invoice"`` schema does use the ``tag:``
+keyword this has the net effect of requiring all ``order-history`` items to be
+tagged ``!<tag:stsci.edu:yaml-schema/examples/invoice>`` in the YAML document.
 
 
 ``propertyOrder`` keyword
