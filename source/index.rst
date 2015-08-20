@@ -239,6 +239,34 @@ writing automated tests of the schema in-line with the schema definition
 itself.
 
 
+Additional Notes
+----------------
+
+Anchors/Aliases and References
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Another feature of YAML that is not reflected in JSON is anchors and aliases--
+these allow an object that appears multiple times in the document to be
+written out just once along with an *anchor*.  This object can than be
+referenced more than once via an *alias* node.
+
+As this is mostly a presentation detail YAML Schema does not currently have
+anything to say about it.  In principle YAML Schema could include hints for
+whether or not an object an object may use anchors or how those anchors should
+be named.  However in practice we have yet to identify a need for this.
+
+YAML schemas themselves *may* use anchors and aliases within the schema;
+however, this usage is discouraged.  In practice we have found the
+`JSON Pointer <http://tools.ietf.org/html/draft-pbryan-zyp-json-pointer-02>`_
+[#f4]_ syntax more useful for references within a schema.  This is in part
+because it is already used in JSON Schema [#f5]_ via the `JSON Reference
+<http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03>`_ standard,
+and because it enables both intra-schema references and references to external
+schemas (whereas YAML aliases only allow intra-document references).  The
+support for external schema references is especially useful for extending
+and encapsulating existing schemas from disparate projects.
+
+
 Schemas
 -------
 
@@ -257,7 +285,9 @@ schemas.
 .. [#f1] `Extending the JSON Schema core definition <http://json-schema.org/latest/json-schema-core.html#anchor20>`_
 .. [#f2] `JSON Schema Meta Core Meta-Schema <https://github.com/Julian/jsonschema/blob/4baff2178f4ade789cb6049f2b6bcd9031c8f89f/jsonschema/schemas/draft4.json>`_ (on GitHub for ease of viewing)
 .. [#f3] `Ordered Mapping (omap) Type for YAML <http://yaml.org/type/omap.html>`_
-
+.. [#f4] For a softer introduction to how JSON Pointer is used, see the relevant section
+         in `Understanding JSON Schema <http://spacetelescope.github.io/understanding-json-schema/structuring.html#reuse>`_
+.. [#f5] `URL dereferencing in JSON Schema <http://json-schema.org/latest/json-schema-core.html#anchor25>`_
 
 .. only:: html
 
