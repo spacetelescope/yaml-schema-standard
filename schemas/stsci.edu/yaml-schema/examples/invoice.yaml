@@ -1,0 +1,135 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01" 
+id: "http://stsci.edu/schemas/yaml-schema/examples/invoice"
+tag: "tag:stsci.edu:yaml-schema/examples/invoice"
+title: Invoice
+description: |
+    Represents billing invoices.
+
+examples:
+    -
+        - "An example invoice demonstrating the full schema:"
+        - |
+            %TAG ! tag:stsci.edu:yaml-schema/examples/
+            --- !invoice
+            invoice: 34843
+            date   : 2001-01-23
+            bill-to: &id001
+                - name: Chris Dumars
+                - address:
+                    - lines: |
+                        458 Walkman Dr.
+                        Suite #292
+                    - city: Royal Oak
+                    - state: MI
+                    - postal: 48046
+            ship-to: *id001
+            product:
+                - sku         : BL394D
+                  quantity    : 4
+                  description : Basketball
+                  price       : 450.00
+                - sku         : BL4438H
+                  quantity    : 1
+                  description : Super Hoop
+                  price       : 2392.00
+            tax  : 251.42
+            total: 4443.52
+            comments:
+                Late afternoon is best.
+                Backup contact is Nancy
+                Billsmer @ 338-4338.
+            ...
+
+type: object
+
+properties:
+    invoice:
+        type: integer
+        minimum: 1
+    date:
+        type: string
+        format: date-time
+    bill-to:
+        $ref: "#/definitions/address"
+    ship-to:
+        $ref: "#/definitions/address"
+    product:
+        type: array
+        items:
+            $ref: "#/definitions/product"
+    tax:
+        type: number
+        minimum: 0
+    total:
+        type: number
+        minimum: 0
+    comments:
+        type: string
+        flowStyle: block
+
+definitions:
+    address:
+        description: |
+            An address consisting of a name and street address.
+        type: object
+        flowStyle: block
+        propertyOrder: [name, address]
+        required: [name, address]
+        properties:
+            name:
+                type: string
+                style: inline
+                description:
+                    The full name of the addressee (in whatever order is
+                    culturally appropriate).
+            address:
+                $ref: "#/definitions/street-address"
+        additionalProperties: false
+
+    street-address:
+        description: |
+            A street address (excluding the name of the addressee).
+        type: object
+        flowStyle: block
+        propertyOrder: [lines, city, state, postal]
+        required: [lines, city, state, postal]
+        properties:
+            lines:
+                type: string
+                style: literal
+            city:
+                type: string
+                flowStyle: inline
+            state:
+                type: string
+                flowStyle: inline
+            postal:
+                type: string
+                flowStyle: inline
+                pattern: "^[0-9]{5}(-[0-9]{4})?$"
+        additionalProperties: false
+
+    product:
+        description: |
+            A listing for a single product on an invoice (including quantity
+            of that product--products with the same SKU should not be listed
+            more than once).
+        type: object
+        flowStyle: block
+        required: [sku, quantity, description, price]
+        properties:
+            sku:
+                type: string
+                flowStyle: inline
+            quantity:
+                type: integer
+                minimum: 1
+            description:
+                type: string
+                flowStyle: inline
+            price:
+                type: number
+                minimum: 0
+        additionalProperties: false

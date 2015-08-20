@@ -12,8 +12,7 @@ released version of the YAML Schema standard.**
    :maxdepth: 1
    :hidden:
 
-   schemas/stsci.edu/yaml-schema/draft-01.rst
-   changes.rst
+   changes
 
 Introduction
 ------------
@@ -203,6 +202,19 @@ may contain YAML, there is otherwise nothing YAML-specific about it.  This
 keyword can help in generation of nice documentation for schema, as well as
 writing automated tests of the schema in-line with the schema definition
 itself.
+
+
+Schemas
+-------
+
+This reference section includes the YAML Schema meta-schema and any example
+schemas.
+
+.. toctree::
+    :maxdepth: 1
+
+    schemas/stsci.edu/yaml-schema/draft-01
+    schemas/stsci.edu/yaml-schema/examples/invoice
 
 
 .. rubric:: Footnotes
