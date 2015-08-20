@@ -1,4 +1,8 @@
 build
 *.pyc
 
+# vim detritus
+.*.swp
+.*.swo
+
 source/schemas/stsci.edu
