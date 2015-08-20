@@ -64,11 +64,36 @@ and as such is a superset of JSON Schema's metaschema.
 History
 -------
 
-TODO: Mention as additional history that YAML Schema was created specifically
-for ASDF, but may have broader application as well.  Note that by offering
-YAML Schema to the community outside the context of ASDF we hope to drive
-adoption of this format within the YAML community, and drive development of
-implementations.
+YAML Schema was originally developed in parallel with the specification and
+implementation of the `ASDF file format
+<http://asdf-standard.readthedocs.org/en/latest/index.html>`_, a new file
+format being developed at `STScI <http://www.stsci.edu/portal/>`_ for
+serializing astronomy and other scientific data.
+
+It was an early requirement to include a validation mechanism for the core
+data structures appearing in ASDF files, and a strong desire to build this
+mechanism on existing, broadly adopted standards.  JSON Schema quickly emerged
+as the best choice.  However, ASDF serializes its core data structures as
+YAML (a superset of JSON, as of v1.2 of the YAML standard), and makes extensive
+use of YAML-specific features (chiefly tags).  So it became desireable to
+extend JSON Schema to support validation of some YAML-specific featuers.
+
+Additionally, though not particular to YAML, there was a desire to include more
+documentation for schemas within the schemas themselves.  Although YAML (but
+notably not JSON) has support for in-line comments, those comments are ignored
+by parsers and are not returned as part of the data structure read out of a
+YAML file.  It was advantageous to have documentation as part of the data
+structure for schemas themselves, as it allows better introspection of schemas
+either as part of a user API, or for generation of human-readable
+documentation.  To that end YAML Schema adds additional documentation-related
+properties to the schema format.  However, as these properties are not
+YAML-specific they could, in principle, be added as a separate JSON Schema
+extension.
+
+Although YAML Schema was created specifically for ASDF, we expect it to have
+broader applicability, and hope that offering it as a separate product will
+encourage adoption of this format within the YAML community, and drive
+development of implementations.
 
 
 New Keywords
