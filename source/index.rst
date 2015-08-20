@@ -40,16 +40,16 @@ JSON, JSON Schema is not strictly limited to data that has been at one time
 serialized as JSON.  It is, however, limited to data structures that can be
 serialized as JSON.
 
-Given some data structure, it will generally be possible to serialize it
-either as JSON or as YAML.  However, YAML serializations may contain additional
+Given some data structure, it will generally be possible to serialize it either
+as JSON or as YAML.  However, YAML serializations may contain additional
 explicit structure that is not possible in JSON without use of local,
 application-specific conventions.  Examples include tags, and ordered objects,
 both of which are described in more detail below.  As YAML is designed with
-human-readability, presentation is also of more concern, and the YAML
+human-readability in mind, presentation is also of more concern, and the YAML
 specification has more to say on the topic than JSON.  YAML often provides
 multiple options for how the same data can be presented (beyond just placement
-of whitespace), and a schema can be used to provide hints to YAML writers
-for how a given data structure should be serialized for optimal readability.
+of whitespace), and a schema can be used to provide hints to YAML writers for
+how a given data structure should be serialized for optimal readability.
 
 To be clear, the JSON Schema specification allows extensions by design [TODO:
 reference JSON Schema Core spec here], through definition of additional
