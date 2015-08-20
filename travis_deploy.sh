@@ -4,7 +4,7 @@
 set -e
 
 GH_ACCOUNT=spacetelescope
-GH_REPOSITORY=asdf-standard
+GH_REPOSITORY=yaml-schema-standard
 GH_REMOTE=live
 GH_PAGESBRANCH=gh-pages
 
@@ -18,7 +18,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 	git remote add $GH_REMOTE https://${GH_TOKEN}@github.com/$GH_ACCOUNT/$GH_REPOSITORY.git
 
 	git config --global user.email ${GH_EMAIL}
-        git config --global user.name "Michael Droettboom"
+        git config --global user.name "${GH_NAME}"
 
         # Create a new "orphaned" branch -- we don't need history for
         # the built products
