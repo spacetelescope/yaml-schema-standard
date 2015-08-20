@@ -124,14 +124,14 @@ have its properties presented in the given order.
 
 *TBD: It is not yet clear whether this keyword is necessary or desirable.*
 
-YAML provides an ``!!omap`` type [TODO: link to YAML spec] for *ordered*
-mappings.  In JSON terms, this equates to semantically meaningful order to
-the properties in the object, which is not normally possible in JSON without
-a local convention.  As native language support for ordered mappings is not
-implemented in all YAML parsers, applications may choose to ignore this
-keyword for validation purposes.  However, this keyword may also be used as
-a presentation hint, informing the YAML writer on the order to write out
-keywords in a specific mapping object, where possible.
+YAML provides an ``!!omap`` type [#f3]_ for *ordered* mappings.  In JSON terms,
+this equates to semantically meaningful order to the properties in the object,
+which is not normally possible in JSON without a local convention.  As native
+language support for ordered mappings is not implemented in all YAML parsers,
+applications may choose to ignore this keyword for validation purposes.
+However, this keyword may also be used as a presentation hint, informing the
+YAML writer on the order to write out keywords in a specific mapping object,
+where possible.
 
 
 ``style`` keyword
@@ -209,6 +209,7 @@ itself.
 
 .. [#f1] `Extending the JSON Schema core definition <http://json-schema.org/latest/json-schema-core.html#anchor20>`_
 .. [#f2] `JSON Schema Meta Core Meta-Schema <https://github.com/Julian/jsonschema/blob/4baff2178f4ade789cb6049f2b6bcd9031c8f89f/jsonschema/schemas/draft4.json>`_ (on GitHub for ease of viewing)
+.. [#f3] `Ordered Mapping (omap) Type for YAML <http://yaml.org/type/omap.html>`_
 
 
 .. only:: html
