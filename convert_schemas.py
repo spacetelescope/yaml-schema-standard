@@ -163,6 +163,8 @@ def format_type(schema, root):
             return ':ref:`{0} <{1}/{2}>`'.format(ref[2:], root, ref[2:])
         else:
             basename = os.path.basename(schema['$ref'])
+            # Link references to external schemas; currently used only to
+            # linke to JSON Schema itself
             if schema['$ref'].startswith('http:'):
                 return '`{0} <{1}>`__'.format(basename, schema['$ref'])
             else:
@@ -326,6 +328,8 @@ def recurse(o, name, schema, path, level, required=False):
             o.write(indent)
             o.write(':category:`Properties:`\n\n')
             for key, val in schema.get('properties', {}).items():
+                if key == '$ref':
+                    continue
                 recurse(o, key, val, path + ['properties', key], level + 1,
                         key in schema.get('required', []))
 
@@ -366,8 +370,12 @@ def convert_schema_to_rst(src, dst):
         name += ': ' + schema['title'].strip()
     recurse(o, name, schema, [id], 0)
 
-    o.write(".. only:: html\n\n   :download:`Original schema in YAML <{0}>`\n".format(
+    write_header(o, 'Original schema in YAML', 1)
+    o.write(".. only:: html\n\n   :download:`[Download raw] <{0}>`\n".format(
         os.path.basename(src)))
+    o.write(".. literalinclude:: {0}\n".format(os.path.basename(dst)))
+    o.write("    :language: yaml\n")
+    o.write("    :linenos:\n\n")
 
     write_if_different(dst, yaml_content)
     write_if_different(dst[:-5] + ".rst", o.getvalue().encode('utf-8'))
