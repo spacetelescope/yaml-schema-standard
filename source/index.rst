@@ -100,9 +100,10 @@ New Keywords
 
 YAML Schema adds five new keywords to JSON Schema:
 
-TODO: Put a table of contents here, linking to the descriptions of the new
-keyword below.
-
+.. contents::
+    :depth: 1
+    :local:
+    :backlinks: entry
 
 ``tag`` keyword
 ^^^^^^^^^^^^^^^
@@ -213,8 +214,8 @@ schemas.
 .. toctree::
     :maxdepth: 1
 
-    schemas/stsci.edu/yaml-schema/draft-01
-    schemas/stsci.edu/yaml-schema/examples/invoice
+    YAML Schema Meta-Schema <schemas/stsci.edu/yaml-schema/draft-01>
+    Example Schema: Invoice <schemas/stsci.edu/yaml-schema/examples/invoice>
 
 
 .. rubric:: Footnotes
