@@ -51,14 +51,13 @@ multiple options for how the same data can be presented (beyond just placement
 of whitespace), and a schema can be used to provide hints to YAML writers for
 how a given data structure should be serialized for optimal readability.
 
-To be clear, the JSON Schema specification allows extensions by design [TODO:
-reference JSON Schema Core spec here], through definition of additional
-keywords that may be used in a schema.  JSON Schema implementations that do
-not support the additional keywords should ignore them; as such, to support
-YAML Schema it is necessary to provide JSON Schema implementations that
-interpret the added keywords.  Also, just as JSON Schema provides a metaschema
-[TODO: link to metaschema], YAML Schema has a metaschema describing how to
-correctly interpret its additional keywords.  The YAML Schema metaschema
+To be clear, the JSON Schema specification allows extensions by design [#f1]_,
+through definition of additional keywords that may be used in a schema.  JSON
+Schema implementations that do not support the additional keywords should
+ignore them; as such, to support YAML Schema it is necessary to provide JSON
+Schema implementations that interpret the added keywords.  Also, just as JSON
+Schema provides a metaschema [#f2]_, YAML Schema has a metaschema describing
+how to correctly interpret its additional keywords.  The YAML Schema metaschema
 *extends* JSON Schema's metaschema using the JSON Schema extension capability,
 and as such is a superset of JSON Schema's metaschema.
 
@@ -142,6 +141,12 @@ may contain YAML, there is otherwise nothing YAML-specific about it.  This
 keyword can help in generation of nice documentation for schema, as well as
 writing automated tests of the schema in-line with the schema definition
 itself.
+
+
+.. rubric:: Footnotes
+
+.. [#f1] `Extending the JSON Schema core definition <http://json-schema.org/latest/json-schema-core.html#anchor20>`_
+.. [#f2] `JSON Schema Meta Core Meta-Schema <https://github.com/Julian/jsonschema/blob/4baff2178f4ade789cb6049f2b6bcd9031c8f89f/jsonschema/schemas/draft4.json>`_ (on GitHub for ease of viewing)
 
 
 .. only:: html
