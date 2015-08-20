@@ -137,13 +137,50 @@ keywords in a specific mapping object, where possible.
 ``style`` keyword
 ^^^^^^^^^^^^^^^^^
 
-TODO
+Must be ``inline``, ``literal`` or ``folded``.
+
+Specifies the default serialization style to use for a string.  YAML
+supports multiple styles for strings::
+
+  Inline style: "First line\nSecond line"
+
+  Literal style: |
+    First line
+    Second line
+
+  Folded style: >
+    First
+    line
+
+    Second
+    line
+
+This property gives an optional hint to the tool outputting the YAML
+which style to use.  If not provided, the library is free to use
+whatever heuristics it wishes to determine the output style.  This
+property does not enforce any particular style on YAML being parsed.
 
 
 ``flowStyle`` keyword
 ^^^^^^^^^^^^^^^^^^^^^
 
-TODO
+Must be either ``block`` or ``flow``.
+
+Specifies the default serialization style to use for an array or
+object.  YAML supports multiple styles for arrays/sequences and
+objects/maps, called "block style" and "flow style".  For example::
+
+  Block style: !!map
+   Clark : Evans
+   Ingy  : döt Net
+   Oren  : Ben-Kiki
+
+  Flow style: !!map { Clark: Evans, Ingy: döt Net, Oren: Ben-Kiki }
+
+This property gives an optional hint to the tool outputting the YAML
+which style to use.  If not provided, the library is free to use
+whatever heuristics it wishes to determine the output style.  This
+property does not enforce any particular style on YAML being parsed.
 
 
 ``examples`` keyword
